@@ -112,11 +112,11 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
             <div class="glass-panel p-3 rounded-2xl border border-white/5 flex flex-col gap-1">
                 <span class="text-text-muted text-[10px] uppercase tracking-wider font-semibold">Balance</span>
-                <span id="display-balance" class="text-lg font-mono font-bold text-text-primary">$0.00</span>
+                <span id="display-balance" class="text-lg font-mono font-bold text-text-primary">0.00</span>
             </div>
             <div class="glass-panel p-3 rounded-2xl border border-white/5 flex flex-col gap-1">
                 <span class="text-text-muted text-[10px] uppercase tracking-wider font-semibold">Net PnL</span>
-                <span id="display-netpnl" class="text-lg font-mono font-bold text-text-primary">$0.00</span>
+                <span id="display-netpnl" class="text-lg font-mono font-bold text-text-primary">0.00</span>
             </div>
             <div class="glass-panel p-3 rounded-2xl border border-white/5 flex flex-col gap-1">
                 <span class="text-text-muted text-[10px] uppercase tracking-wider font-semibold">Hit Rate</span>
@@ -129,7 +129,7 @@
             <div class="glass-panel p-3 rounded-2xl border border-white/5 flex flex-col gap-1">
                 <span class="text-text-muted text-[10px] uppercase tracking-wider font-semibold">Avg Win / Loss</span>
                 <span id="display-avg" class="text-sm font-mono font-bold text-text-primary">
-                    <span class="text-neon-green">+$0</span> / <span class="text-neon-red">-$0</span>
+                    <span class="text-neon-green">+0</span> / <span class="text-neon-red">-0</span>
                 </span>
             </div>
             <div class="glass-panel p-3 rounded-2xl border border-white/5 flex flex-col gap-1">
@@ -155,8 +155,8 @@
             </div>
             
             <div class="flex justify-between text-xs font-mono z-10">
-                <span class="text-neon-red font-bold" id="risk-limit-text">Loss Limit: $0.00</span>
-                <span class="text-neon-green font-bold" id="challenge-target-text">Goal: $0.00</span>
+                <span class="text-neon-red font-bold" id="risk-limit-text">Loss Limit: 0.00</span>
+                <span class="text-neon-green font-bold" id="challenge-target-text">Goal: 0.00</span>
             </div>
             
             <button id="btn-generate-card" class="hidden w-full py-3 mt-2 bg-neon-green/20 border border-neon-green/50 text-neon-green font-extrabold rounded-lg hover:bg-neon-green hover:text-void transition-all uppercase tracking-widest text-sm z-10">
@@ -202,7 +202,7 @@
         <div class="flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center gap-2 text-text-muted">
                 <div class="w-1.5 h-1.5 bg-neon-green rounded-full shadow-[0_0_5px_#0DF58A]"></div>
-                <span class="text-[10px] font-bold uppercase tracking-widest">Valorem Terminal v1.0.0 &copy; 2026</span>
+                <span class="text-[10px] font-bold uppercase tracking-widest">Valorem Terminal v1.1.0 &copy; 2026</span>
             </div>
             
             <p class="text-[10px] font-mono text-text-muted uppercase tracking-widest text-center">
@@ -294,7 +294,7 @@
                 
                 <div class="flex gap-4 w-full">
                     <div class="flex-1 flex flex-col gap-1 min-w-0">
-                        <label class="text-xs font-bold text-text-muted uppercase">Net PnL ($) <span class="text-neon-red normal-case">-ve</span></label>
+                        <label id="lbl-log-pnl" class="text-xs font-bold text-text-muted uppercase">Net PnL <span class="text-neon-red normal-case">-ve</span></label>
                         <input type="text" inputmode="text" id="input-pnl" placeholder="-50 or 150" required class="w-full bg-void border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-neon-green text-sm font-mono">
                     </div>
                     <div class="flex-1 flex flex-col gap-1 min-w-0">
@@ -325,21 +325,31 @@
             </div>
             
             <form id="add-aza-form" class="flex flex-col gap-4">
-                <div class="flex flex-col gap-1 w-full">
-                    <label class="text-xs font-bold text-text-muted uppercase">Account Name</label>
-                    <input type="text" id="new-aza-name" placeholder="e.g. FTMO 100k Phase 1" required class="w-full bg-void border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-neon-green text-sm font-bold">
+                <div class="flex gap-4 w-full">
+                    <div class="flex-[2] flex flex-col gap-1 min-w-0">
+                        <label class="text-xs font-bold text-text-muted uppercase">Account Name</label>
+                        <input type="text" id="new-aza-name" placeholder="e.g. FTMO 100k" required class="w-full bg-void border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-neon-green text-sm font-bold">
+                    </div>
+                    <div class="flex-1 flex flex-col gap-1 min-w-0">
+                        <label class="text-xs font-bold text-text-muted uppercase">Currency</label>
+                        <select id="new-aza-currency" class="w-full bg-void border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-neon-green text-sm font-bold appearance-none">
+                            <option value="$">USD ($)</option>
+                            <option value="₦">NGN (₦)</option>
+                        </select>
+                    </div>
                 </div>
+                
                 <div class="flex flex-col gap-1 w-full">
-                    <label class="text-xs font-bold text-text-muted uppercase">Starting Balance ($)</label>
+                    <label class="text-xs font-bold text-text-muted uppercase">Starting Balance</label>
                     <input type="number" id="new-aza-balance" placeholder="e.g. 10000" step="0.01" required class="w-full bg-void border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-neon-green text-lg font-mono">
                 </div>
                 <div class="flex gap-4 w-full">
                     <div class="flex-1 flex flex-col gap-1 min-w-0">
-                        <label class="text-xs font-bold text-neon-green uppercase">Target ($)</label>
+                        <label class="text-xs font-bold text-neon-green uppercase">Target</label>
                         <input type="number" id="new-aza-target" placeholder="1000" step="0.01" class="w-full bg-void border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-neon-green text-sm font-mono">
                     </div>
                     <div class="flex-1 flex flex-col gap-1 min-w-0">
-                        <label class="text-xs font-bold text-neon-red uppercase">Max Loss ($)</label>
+                        <label class="text-xs font-bold text-neon-red uppercase">Max Loss</label>
                         <input type="number" id="new-aza-loss" placeholder="500" step="0.01" class="w-full bg-void border border-white/10 rounded-lg p-3 text-white focus:outline-none focus:border-neon-red text-sm font-mono">
                     </div>
                 </div>
@@ -363,11 +373,11 @@
                 <span class="text-xs font-bold text-text-muted uppercase tracking-widest">Update Rules</span>
                 <div class="flex gap-2 w-full">
                     <div class="flex-1 flex flex-col gap-1 min-w-0">
-                        <label class="text-[10px] font-bold text-neon-green uppercase">Target ($)</label>
+                        <label id="lbl-edit-target" class="text-[10px] font-bold text-neon-green uppercase">Target</label>
                         <input type="number" id="edit-aza-target" step="0.01" required class="w-full bg-void border border-white/10 rounded p-2 text-white text-xs font-mono">
                     </div>
                     <div class="flex-1 flex flex-col gap-1 min-w-0">
-                        <label class="text-[10px] font-bold text-neon-red uppercase">Loss Limit ($)</label>
+                        <label id="lbl-edit-loss" class="text-[10px] font-bold text-neon-red uppercase">Loss Limit</label>
                         <input type="number" id="edit-aza-loss" step="0.01" required class="w-full bg-void border border-white/10 rounded p-2 text-white text-xs font-mono">
                     </div>
                 </div>
@@ -409,7 +419,7 @@
         </div>
     </div>
     
-    <!-- THE UPGRADED VICTORY CARD (HIDDEN) -->
+    <!-- THE VICTORY CARD (HIDDEN) -->
     <div class="fixed -left-[9999px] top-0 pointer-events-none">
         <div id="victory-card" class="w-[800px] h-[800px] bg-void flex flex-col items-center justify-center p-12 border border-white/5 relative overflow-hidden font-sans">
             <div class="absolute top-0 right-0 w-96 h-96 bg-neon-green/10 rounded-full blur-[100px]"></div>
@@ -429,15 +439,15 @@
                 <div class="grid grid-cols-2 gap-y-10 gap-x-8 w-full z-10 my-auto mt-4">
                     <div class="flex flex-col gap-1 text-center">
                         <span class="text-text-muted text-lg uppercase tracking-widest font-semibold">Start Capital</span>
-                        <span id="vc-start" class="text-5xl font-mono font-bold text-text-primary">$0.00</span>
+                        <span id="vc-start" class="text-5xl font-mono font-bold text-text-primary">0.00</span>
                     </div>
                     <div class="flex flex-col gap-1 text-center">
                         <span class="text-text-muted text-lg uppercase tracking-widest font-semibold">Final Equity</span>
-                        <span id="vc-end" class="text-5xl font-mono font-bold text-neon-green">$0.00</span>
+                        <span id="vc-end" class="text-5xl font-mono font-bold text-neon-green">0.00</span>
                     </div>
                     <div class="flex flex-col gap-1 text-center">
                         <span class="text-text-muted text-lg uppercase tracking-widest font-semibold">Total Profit</span>
-                        <span id="vc-profit" class="text-5xl font-mono font-bold text-text-primary">$0.00</span>
+                        <span id="vc-profit" class="text-5xl font-mono font-bold text-text-primary">0.00</span>
                     </div>
                     <div class="flex flex-col gap-1 text-center">
                         <span class="text-text-muted text-lg uppercase tracking-widest font-semibold">Win Rate</span>
@@ -466,12 +476,15 @@
                     profile: rawData?.profile || DEFAULT_PROFILE,
                     activeAccountId: 'acc_1',
                     accounts: [
-                        { id: 'acc_1', name: 'Prop Firm 1', startBalance: rawData?.prop?.startBalance || 10000, targetProfit: rawData?.prop?.targetProfit || 0, maxLoss: rawData?.prop?.maxLoss || 0, trades: rawData?.prop?.trades || [] },
-                        { id: 'acc_2', name: 'Personal Aza', startBalance: rawData?.personal?.startBalance || 1000, targetProfit: rawData?.personal?.targetProfit || 0, maxLoss: rawData?.personal?.maxLoss || 0, trades: rawData?.personal?.trades || [] }
+                        { id: 'acc_1', name: 'Prop Firm 1', currency: '$', startBalance: rawData?.prop?.startBalance || 10000, targetProfit: rawData?.prop?.targetProfit || 0, maxLoss: rawData?.prop?.maxLoss || 0, trades: rawData?.prop?.trades || [] },
+                        { id: 'acc_2', name: 'Personal Aza', currency: '$', startBalance: rawData?.personal?.startBalance || 1000, targetProfit: rawData?.personal?.targetProfit || 0, maxLoss: rawData?.personal?.maxLoss || 0, trades: rawData?.personal?.trades || [] }
                     ]
                 };
                 localStorage.setItem('valorem_data', JSON.stringify(rawData));
             }
+
+            // Fallback migration to ensure old accounts get USD assigned
+            rawData.accounts.forEach(acc => { if(!acc.currency) acc.currency = '$'; });
             
             let appData = rawData;
             let durationFilter = 'ALL';
@@ -525,6 +538,13 @@
                 renderTabs();
                 const account = getActiveAccount();
                 if(!account) return;
+
+                const curr = account.currency || '$';
+                
+                // Inject Dynamic Currency Labels into Modals
+                document.getElementById('lbl-log-pnl').innerHTML = `Net PnL (${curr}) <span class="text-neon-red normal-case">-ve</span>`;
+                document.getElementById('lbl-edit-target').textContent = `Target (${curr})`;
+                document.getElementById('lbl-edit-loss').textContent = `Loss Limit (${curr})`;
                 
                 const trades = account.trades; 
                 const now = new Date();
@@ -563,14 +583,14 @@
                 let avgLoss = losses > 0 ? (grossLoss / losses).toFixed(2) : '0.00';
 
                 // Inject Grid Stats
-                document.getElementById('display-balance').textContent = `$${currentBalance.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-                document.getElementById('display-netpnl').textContent = `${totalPnL > 0 ? '+' : ''}$${totalPnL.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+                document.getElementById('display-balance').textContent = `${curr}${currentBalance.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+                document.getElementById('display-netpnl').textContent = `${totalPnL > 0 ? '+' : ''}${curr}${totalPnL.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
                 document.getElementById('display-netpnl').className = totalPnL >= 0 ? "text-lg font-mono font-bold text-neon-green" : "text-lg font-mono font-bold text-neon-red";
                 document.getElementById('display-winrate').textContent = `${winRate}%`; 
                 document.getElementById('display-winrate').className = winRate >= 50 ? "text-lg font-mono font-bold text-neon-green" : "text-lg font-mono font-bold text-neon-red";
                 document.getElementById('display-profitfactor').textContent = profitFactor; 
                 document.getElementById('display-profitfactor').className = profitFactor >= 1.5 || profitFactor === 'MAX' ? "text-lg font-mono font-bold text-neon-green" : "text-lg font-mono font-bold text-text-primary";
-                document.getElementById('display-avg').innerHTML = `<span class="text-neon-green">+$${avgWin}</span> / <span class="text-neon-red">-$${avgLoss}</span>`;
+                document.getElementById('display-avg').innerHTML = `<span class="text-neon-green">+${curr}${avgWin}</span> / <span class="text-neon-red">-${curr}${avgLoss}</span>`;
                 if(currentStreakCount === 0) { document.getElementById('display-streak').innerHTML = '-'; } 
                 else if(streakType === 'W') { document.getElementById('display-streak').innerHTML = `<span class="text-neon-green">🔥 ${currentStreakCount} Wins</span>`; } 
                 else { document.getElementById('display-streak').innerHTML = `<span class="text-neon-red">🥶 ${currentStreakCount} Losses</span>`; }
@@ -579,8 +599,8 @@
                 const progFill = document.getElementById('challenge-progress'); 
                 const statusTxt = document.getElementById('challenge-status-text');
                 
-                document.getElementById('challenge-target-text').textContent = `Target: $${account.targetProfit}`; 
-                document.getElementById('risk-limit-text').textContent = `Max Loss: $${account.maxLoss}`;
+                document.getElementById('challenge-target-text').textContent = `Target: ${curr}${account.targetProfit}`; 
+                document.getElementById('risk-limit-text').textContent = `Max Loss: ${curr}${account.maxLoss}`;
 
                 // Engine Logic (Risk vs Target)
                 if (account.maxLoss > 0 && totalPnL <= -account.maxLoss) {
@@ -655,7 +675,7 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-3 shrink-0 mt-1">
-                                <span class="font-mono font-bold text-sm ${isWin ? 'text-neon-green' : 'text-neon-red'}">${isWin ? '+' : ''}$${t.pnl}</span>
+                                <span class="font-mono font-bold text-sm ${isWin ? 'text-neon-green' : 'text-neon-red'}">${isWin ? '+' : ''}${curr}${t.pnl}</span>
                                 <button onclick="deleteTrade(${t.id})" class="text-text-muted hover:text-neon-red p-1">🗑️</button>
                             </div>
                         `;
@@ -766,16 +786,19 @@
             
             document.getElementById('filter-duration').addEventListener('change', (e) => { durationFilter = e.target.value; updateDashboard(); });
 
-            // Add New Aza
+            // Add New Aza (With Currency)
             document.getElementById('btn-close-add-aza').addEventListener('click', () => toggleModal(document.getElementById('add-aza-modal'), document.getElementById('add-aza-modal-content'), false));
             document.getElementById('add-aza-form').addEventListener('submit', (e) => { 
                 e.preventDefault(); 
                 const newId = 'acc_' + Date.now(); 
                 appData.accounts.push({ 
-                    id: newId, name: document.getElementById('new-aza-name').value, 
+                    id: newId, 
+                    name: document.getElementById('new-aza-name').value, 
+                    currency: document.getElementById('new-aza-currency').value,
                     startBalance: parseFloat(document.getElementById('new-aza-balance').value) || 0, 
                     targetProfit: parseFloat(document.getElementById('new-aza-target').value) || 0, 
-                    maxLoss: parseFloat(document.getElementById('new-aza-loss').value) || 0, trades: [] 
+                    maxLoss: parseFloat(document.getElementById('new-aza-loss').value) || 0, 
+                    trades: [] 
                 }); 
                 appData.activeAccountId = newId; saveToDB(); 
                 toggleModal(document.getElementById('add-aza-modal'), document.getElementById('add-aza-modal-content'), false); 
@@ -823,6 +846,8 @@
                 btn.innerHTML = 'COOKING...'; btn.disabled = true; 
                 
                 const acc = getActiveAccount();
+                const curr = acc.currency || '$';
+                
                 document.getElementById('vc-trader-name').textContent = appData.profile.name;
                 
                 const vcAvatar = document.getElementById('vc-avatar'); 
@@ -830,10 +855,10 @@
                     vcAvatar.src = appData.profile.avatar; vcAvatar.style.display = 'block'; 
                 } else { vcAvatar.style.display = 'none'; } 
                 
-                document.getElementById('vc-start').textContent = `$${acc.startBalance.toLocaleString()}`; 
+                document.getElementById('vc-start').textContent = `${curr}${acc.startBalance.toLocaleString()}`; 
                 const totalPnL = acc.trades.reduce((a,b)=>a+b.pnl,0); 
-                document.getElementById('vc-end').textContent = `$${(acc.startBalance + totalPnL).toLocaleString()}`; 
-                document.getElementById('vc-profit').textContent = `+$${totalPnL.toLocaleString()}`; 
+                document.getElementById('vc-end').textContent = `${curr}${(acc.startBalance + totalPnL).toLocaleString()}`; 
+                document.getElementById('vc-profit').textContent = `+${curr}${totalPnL.toLocaleString()}`; 
                 document.getElementById('vc-winrate').textContent = document.getElementById('display-winrate').textContent; 
                 document.getElementById('vc-date').textContent = `Date: ${new Date().toLocaleDateString('en-GB')}`; 
                 
